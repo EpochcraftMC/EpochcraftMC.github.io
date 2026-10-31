@@ -2,46 +2,14 @@
 import { people } from '../data/members';
 
 const coreLinks = [
-  { code: 'DC', name: '研究院 Discord', desc: '核心组织交流', url: 'https://discord.gg/7tJeSZPZgv' },
-  { code: 'GH', name: 'GitHub', desc: 'CubeX-MC 组织', url: 'https://github.com/CubeX-MC' },
-  { code: 'MR', name: 'Modrinth', desc: 'CubeX 组织页面', url: 'https://modrinth.com/organization/cubexmc' },
-  { code: 'DS', name: 'Discussions', desc: 'GitHub 讨论区', url: 'https://github.com/CubeX-MC/CubeX-MC.github.io/discussions' },
-  { code: 'LS', name: 'LetSeries', desc: 'LetMe 系列 GitHub', url: 'https://github.com/LetSeries' },
-  { code: 'LW', name: 'LetSeries 官网', desc: 'letseries.github.io', url: 'https://letseries.github.io/' },
+  { code: 'GH', name: 'GitHub', desc: 'EpochcraftMC 组织', url: 'https://github.com/EpochcraftMC' },
 ];
 
 const qqCategories = [
   {
-    title: '服务器群',
-    groups: [
-      { name: 'CubeX 服务器群', value: '470579814', href: 'https://jq.qq.com/?_wv=1027&k=g38XNewm', note: '主入口' },
-      { name: 'CubeX ELite 内测群', value: '835031357', note: 'RPG 内测' },
-      { name: '清屿服交流群', value: '1102137231', note: '生电服 · 绑定后自动改名片' },
-    ],
+    title: '工作室',
+    groups: [{ name: 'EpochCraft 社区群', value: '818860062', note: '主入口' }],
   },
-  {
-    title: '运营与反馈',
-    groups: [
-      { name: 'CubeX 开服群', value: '614479400', note: '运营讨论' },
-      { name: 'CubeX 玩家代表群', value: '261026870', note: '玩家反馈' },
-    ],
-  },
-  {
-    title: '社区与友邻',
-    groups: [
-      { name: 'CubeX 社区群', value: '296590378', note: '一周目 Commune 社区' },
-      { name: 'WolfX 社区群', value: '801731569', note: '起源社区' },
-      { name: '云湖边社区群', value: '766910766', note: '友邻社区' },
-      { name: 'Eutopia 社区', value: '894099870', note: '友邻社区' },
-      { name: 'CubeX 吵架群', value: '713832786', note: '慎入' },
-    ],
-  },
-];
-
-const platformLinks = [
-  { code: 'TG', name: 'Telegram', desc: 'CubeX 服务器频道', url: 'https://t.me/cbxmc' },
-  { code: 'DC', name: 'CubeX Discord', desc: '服务器社区', url: 'https://discord.gg/QWKcSZFert' },
-  { code: 'BL', name: 'Bilibili', desc: 'CubeX 官方', url: 'https://space.bilibili.com/3546921981446556' },
 ];
 
 const groupCount = qqCategories.reduce((total, c) => total + c.groups.length, 0);
@@ -70,8 +38,8 @@ const coreCount = people.find((s) => s.variant === 'core')?.members.length ?? 0;
     <h1 class="display">社区网络</h1>
 
     <p class="lede">
-      CubeX 不只是一个服务器名，而是由服务器、项目、成员、历史和聊天入口交织成的研究院品牌。
-      这里合并了社区入口与成员索引，方便新玩家找组织，也方便老玩家回来看谁还在做事。
+      EpochCraft 不只是一个名字，而是由组件、成员、历史和聊天入口交织成的工作室品牌。
+      这里合并了社区入口与成员索引。
     </p>
   </header>
 
@@ -121,20 +89,6 @@ const coreCount = people.find((s) => s.variant === 'core')?.members.length ?? 0;
       ))}
     </div>
 
-    <div class="platforms">
-      <p class="label">Platforms</p>
-      <ul class="tools">
-        {platformLinks.map((link) => (
-          <li>
-            <a href={link.url} target="_blank" rel="noopener">
-              <span class="tool-code">{link.code}</span>
-              <span class="tool-name">{link.name}</span>
-              <span class="tool-desc">{link.desc}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
   </section>
 
   {sections.map((section) => (

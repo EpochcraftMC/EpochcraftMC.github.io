@@ -1,15 +1,14 @@
 {
-  "name": "cubex-research",
+  "name": "epochcraft-studio",
   "type": "module",
   "version": "2.0.0",
-  "description": "CubeX 研究院 - Minecraft Server Organization",
+  "description": "方块纪元工作室 - 《我的世界》网易版工作室",
   "engines": {
     "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "update:project-activity": "node scripts/update-project-activity.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

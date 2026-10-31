@@ -9,7 +9,7 @@ const astroPrerenderEntry = fileURLToPath(
 );
 
 export default defineConfig({
-  site: 'https://cubexmc.org',
+  site: 'https://epochcraftmc.github.io',
   vite: {
     plugins: [tailwindcss()],
     resolve: {

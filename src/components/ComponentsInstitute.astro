@@ -1,0 +1,153 @@
+---
+import { studio, studioTagline } from '../data/studio';
+import {
+  components,
+  componentKinds,
+  componentCounts,
+  statusLabels,
+  statusTone,
+} from '../data/components';
+
+/** Catalogue numbers follow the register's own order: newest submission first. */
+const records = components.map((item, index) => ({
+  ...item,
+  no: `CMP-${String(index + 1).padStart(2, '0')}`,
+}));
+
+const groups = componentKinds
+  .map((kind) => ({ ...kind, items: records.filter((item) => item.kind === kind.id) }))
+  .filter((kind) => kind.items.length > 0);
+
+/** The earliest submission — the studio's first component. */
+const firstItem = records.reduce((a, b) => (a.submittedAt <= b.submittedAt ? a : b));
+/** The most recent update across the catalogue. */
+const latestUpdate = records.reduce((a, b) => (a.updatedAt >= b.updatedAt ? a : b));
+
+const identity = [
+  { key: '成立', value: studio.foundedOnLabel },
+  { key: '平台', value: `${studio.platform} · 组件中心` },
+  { key: '组织', value: `${studio.nameZh} · ${studio.org}` },
+  { key: '首发', value: `${firstItem.name} · ${firstItem.submittedAt}` },
+  { key: '最近更新', value: `${latestUpdate.name} · ${latestUpdate.updatedAt}` },
+];
+---
+
+<article>
+  <header class="shell plate">
+    <div class="plate-head">
+      <p class="label">Register</p>
+      <p class="label-cn">
+        {componentCounts.total} 件组件 · {componentCounts.byKind.length} 类形态 · {componentCounts.listed} 件已上架
+        {componentCounts.reviewing > 0 && ` · ${componentCounts.reviewing} 件审核中`}
+      </p>
+    </div>
+
+    <h1 class="display">组件档案</h1>
+
+    <p class="lede">
+      {studioTagline}
+      这里是工作室在中国版组件中心的全部上架记录，按提交时间倒序编号，逐件标注组件 ID 与上架状态。
+    </p>
+  </header>
+
+  <section class="shell block">
+    <div class="tick-rule" aria-hidden="true"></div>
+    <div class="block-head">
+      <div>
+        <p class="label">Identity</p>
+        <h2 class="block-title">工作室信息</h2>
+      </div>
+      <p class="block-note">品牌、平台与代码的唯一出处。</p>
+    </div>
+
+    <div class="field">
+      <p class="label-cn">Studio</p>
+      {identity.map((item) => (
+        <div class="row">
+          <span class="row-key wide">{item.key}</span>
+          <span class="row-value plain">{item.value}</span>
+        </div>
+      ))}
+      <div class="row">
+        <span class="row-key wide">代码</span>
+        <span class="row-value">{studio.githubUrl}</span>
+        <a href={studio.githubUrl} target="_blank" rel="noopener" class="row-action">打开 ↗</a>
+      </div>
+      <div class="row">
+        <span class="row-key wide">双端同步</span>
+        <span class="row-value plain">{componentCounts.dual} 件组件同时上架手机端与电脑端</span>
+      </div>
+      <div class="row">
+        <span class="row-key wide">审核中</span>
+        <span class="row-value plain">{componentCounts.reviewing} 件组件已提交、等待审核</span>
+      </div>
+    </div>
+  </section>
+
+  {groups.map((group) => (
+    <section class="shell block">
+      <div class="tick-rule" aria-hidden="true"></div>
+      <div class="block-head">
+        <div>
+          <p class="label">{group.kicker}</p>
+          <h2 class="block-title">{group.title}</h2>
+        </div>
+        <p class="block-note">{group.description}</p>
+      </div>
+
+      <div class="field">
+        <p class="label-cn">共 {group.items.length} 件</p>
+        {group.items.map((item) => (
+          <div class="row work">
+            <span class="row-key">{item.no.slice(-2)}</span>
+            {item.cover && (
+              <img class="thumb" src={item.cover} alt={`${item.name} 封面`} loading="lazy" />
+            )}
+            <span class="row-value plain work-name">{item.name}</span>
+            <span class={`state ${statusTone[item.status]}`}>{statusLabels[item.status]}</span>
+            <span class="work-meta data">
+              组件 ID {item.id} · 提交 {item.submittedAt} · 更新 {item.updatedAt}
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+</article>
+
+<style>
+  .work-name {
+    flex: 1 1 auto;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* Covers print in greyscale with the rest of the register, and develop on hover. */
+  .thumb {
+    flex: 0 0 auto;
+    align-self: center;
+    width: 64px;
+    height: 36px;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    filter: grayscale(1) contrast(1.06);
+    transition: filter 180ms ease;
+  }
+
+  .row.work:hover .thumb {
+    filter: none;
+  }
+
+  /* Metadata wraps onto its own line, indented to clear the catalogue number. */
+  .work-meta {
+    flex: 1 1 100%;
+    padding-left: 34px;
+    font-size: 0.6875rem;
+    color: var(--fg-3);
+  }
+
+  .row-value {
+    overflow-wrap: anywhere;
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 import '../styles/institute.css';
 import Daylight from '../components/Daylight.astro';
+import { studio, studioTagline } from '../data/studio';
 
 interface Props {
   title?: string;
@@ -10,15 +11,14 @@ interface Props {
 }
 
 const {
-  title = 'CubeX 研究院 — Minecraft Server Organization',
-  description = 'CubeX 研究院是围绕 CubeX 品牌展开的 Minecraft 服务器、项目与社区组织。本站是一份持续更新的观测记录。',
+  title = `${studio.nameZh}（${studio.org}） — ${studio.platform}工作室`,
+  description = studioTagline,
   section = '',
 } = Astro.props;
 
 const navItems = [
-  { href: '/servers', label: '服务器', code: 'SRV' },
-  { href: '/projects', label: '项目', code: 'PRJ' },
-  { href: '/community', label: '社区', code: 'COM' },
+  { href: '/components', label: '组件', code: 'CMP' },
+  { href: '/members', label: '社区', code: 'COM' },
   { href: '/about', label: '故事', code: 'HIS' },
 ];
 
@@ -32,7 +32,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" href="/imgs/server-icon.png" type="image/png" />
+    <link rel="icon" href="/imgs/logo.jpg" type="image/jpeg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -47,10 +47,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
     <header class="masthead">
       <div class="shell masthead-inner">
-        <a href="/" class="mark" aria-label="CubeX 研究院">
-          <img src="/imgs/server-icon.png" alt="" width="18" height="18" />
-          <span class="mark-zh">方块叉研究院</span>
-          <span class="mark-en">CUBEX RESEARCH INSTITUTE</span>
+        <a href="/" class="mark" aria-label="方块纪元工作室">
+          <img src="/imgs/logo.jpg" alt="" width="18" height="18" />
+          <span class="mark-zh">方块纪元工作室</span>
+          <span class="mark-en">EPOCHCRAFT STUDIO</span>
         </a>
 
         <nav class="nav">
@@ -64,7 +64,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
             </a>
           ))}
           <span class="nav-sep" aria-hidden="true"></span>
-          <a href="https://github.com/CubeX-MC" target="_blank" rel="noopener" class="nav-item">
+          <a href="https://github.com/EpochcraftMC" target="_blank" rel="noopener" class="nav-item">
             <span class="nav-code">GH</span>
             <span class="nav-label">GitHub</span>
           </a>
@@ -86,27 +86,22 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         <div>
           <p class="label">Colophon</p>
           <p class="colophon-body">
-            CubeX 研究院 — 起源于 WolfX Commune 社区。<br />
-            本站是一份持续更新的观测记录，服务器状态每 30 分钟自动采样一次。
+            {studio.nameZh}（{studio.org}） — 成立于 {studio.foundedOnLabel}。<br />
+            {studio.platform}的地图与皮肤创作工作室。
           </p>
           <p class="colophon-links">
-            <a href="/lookup">服务器查询</a>
-            <a href="/records">人数纪录</a>
-            <a href="/map">存档合并</a>
+            <a href="/components">组件档案</a>
+            <a href="/members">社区网络</a>
             <a href="/about">故事</a>
           </p>
         </div>
         <dl class="colophon-meta">
-          <div><dt>档案</dt><dd>cubexmc.org</dd></div>
+          <div><dt>档案</dt><dd>epochcraftmc.github.io</dd></div>
           <div>
             <dt>代码</dt>
-            <dd><a href="https://github.com/CubeX-MC" target="_blank" rel="noopener">github.com/CubeX-MC</a></dd>
+            <dd><a href="https://github.com/EpochcraftMC" target="_blank" rel="noopener">github.com/EpochcraftMC</a></dd>
           </div>
-          <div>
-            <dt>构件</dt>
-            <dd><a href="https://modrinth.com/organization/cubexmc" target="_blank" rel="noopener">modrinth.com/cubexmc</a></dd>
-          </div>
-          <div><dt>年份</dt><dd>2021 — 2026</dd></div>
+          <div><dt>成立</dt><dd>{studio.foundedOn}</dd></div>
           <div><dt>天光</dt><dd data-daylight-reading>—</dd></div>
         </dl>
       </div>

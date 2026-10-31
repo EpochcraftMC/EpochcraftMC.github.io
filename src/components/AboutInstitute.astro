@@ -1,20 +1,20 @@
 ---
 import { timeline } from '../data/timeline';
-import { adminTimeline, adminTimelineSecret } from '../data/members';
+import { studio } from '../data/studio';
 ---
 
 <article>
   <header class="shell plate">
     <div class="plate-head">
       <p class="label">History</p>
-      <p class="label-cn">{timeline.length} 个阶段 · 2021 — 2026</p>
+      <p class="label-cn">{timeline.length} 个阶段 · 自 {studio.foundedOn} 起</p>
     </div>
 
     <h1 class="display">我们的故事</h1>
 
     <p class="lede">
-      从一个社区到多个服务器，从玩家到组织者。这份沿革记录方块叉如何一路走到
-      CubeX 研究院，以及中间那些没有被删掉的部分。
+      方块纪元工作室成立于 {studio.foundedOnLabel}，是一家《我的世界》网易版工作室。
+      这份沿革从成立那天记起，逐段标注作品投稿与上架的节点。
     </p>
   </header>
 
@@ -22,12 +22,12 @@ import { adminTimeline, adminTimelineSecret } from '../data/members';
   <section class="shell block">
     <div class="tick-rule" aria-hidden="true"></div>
     <figure class="plate-figure">
-      <img src="/imgs/commune.png" alt="WolfX Commune 社区的主城景象" loading="lazy" />
+      <img src="/imgs/cover-random-island.jpg" alt="《[方块纪元]随机空岛生存-周年庆》封面" loading="lazy" />
       <figcaption>
         <span class="label">Fig. 01</span>
         <span class="figure-text">
-          WolfX Commune — 一切的起点。建筑佬、红石玩家、冒险家和养老玩家在这里第一次聚到一起，
-          这片社区的友谊与文化后来成了 CubeX 诞生的土壤。
+          《[方块纪元]随机空岛生存-周年庆》封面。工作室成立后的第一个月，地图与皮肤两条线同时开工：
+          {studio.foundedOnLabel} 成立，次日便投出第一款皮肤，一个月内 5 件组件全部通过审核上架。
         </span>
       </figcaption>
     </figure>
@@ -53,41 +53,6 @@ import { adminTimeline, adminTimelineSecret } from '../data/members';
     </ol>
   </section>
 
-  <!-- Appendices: deliberately faint in the original design; kept faint, framed as restricted. -->
-  <section class="shell block">
-    <div class="tick-rule" aria-hidden="true"></div>
-    <details class="appendix">
-      <summary>
-        <span class="label">Appendix A · Classified</span>
-        <span class="appendix-title">铁打的服务器，流水的管理</span>
-        <span class="appendix-note">CubeX 管理核心更替记录 · {adminTimeline.length} 次</span>
-      </summary>
-      <ol class="ledger">
-        {adminTimeline.map((entry, index) => (
-          <li>
-            <span class="ledger-no data">{String(index + 1).padStart(2, '0')}</span>
-            <span class="ledger-text data">{entry}</span>
-          </li>
-        ))}
-      </ol>
-    </details>
-
-    <details class="appendix is-redacted">
-      <summary>
-        <span class="label">Appendix B · Uncensored</span>
-        <span class="appendix-title">真相永远不止一个版本</span>
-        <span class="appendix-note">以下内容不代表本站立场。也许。</span>
-      </summary>
-      <ol class="ledger">
-        {adminTimelineSecret.map((entry, index) => (
-          <li>
-            <span class="ledger-no data">{String(index + 1).padStart(2, '0')}</span>
-            <span class="ledger-text">{entry}</span>
-          </li>
-        ))}
-      </ol>
-    </details>
-  </section>
 </article>
 
 <style>
