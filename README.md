@@ -1,6 +1,7 @@
 # 方块纪元工作室 · EpochCraft Studio
 
 在线站点：<https://www.epochcraft.cn>
+备用入口：<https://epochcraftmc.github.io>（301 跳转到主域名）
 仓库地址：<https://github.com/EpochcraftMC/EpochcraftMC.github.io>
 
 > **来源**：本仓库是 [CubeX 研究院](https://github.com/CubeX-MC)（CubeX-MC）站点仓库 `CubeX-MC.github.io` 的分支。从上游分支出来后，内容、设计系统与域名均由本分支独立维护，上游仅作为历史起点。
@@ -73,6 +74,10 @@ npm run preview  # 预览构建结果
 仓库的 Pages 源必须设为 **GitHub Actions**（Settings → Pages → Source: GitHub Actions）。若设成「Deploy from a branch」，GitHub 会用 Jekyll 直接构建 `src/` 里的 `.astro` 文件并报错失败。
 
 自定义域名 `www.epochcraft.cn` 记录在仓库根目录的 `CNAME`，并在 Pages 设置中启用；DNS 侧把 `www` 以 CNAME 记录指向 `epochcraftmc.github.io`。
+
+域名生效后两条入口都能进：`https://www.epochcraft.cn` 直接访问，`https://epochcraftmc.github.io` 由 GitHub 301 跳到主域名。页面的 `rel="canonical"` 固定指向主域名，避免同一份内容被重复收录。
+
+改动 Pages 设置时注意两点：用 API 覆盖设置（PUT `/pages`）必须同时带上 `cname`，否则自定义域名会被清空、站点退化成 `epochcraftmc.github.io` 且主域名 404；`https_enforced` 要等证书签发完成后再开。
 
 ## 版权
 
