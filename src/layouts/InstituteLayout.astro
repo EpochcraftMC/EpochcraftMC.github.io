@@ -23,6 +23,9 @@ const navItems = [
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+/** 规范链接以 `site` 为准，避免旧 GitHub Pages 域名被重复收录。 */
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
@@ -33,6 +36,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" href="/imgs/logo.jpg" type="image/jpeg" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={`${studio.nameZh}（${studio.nameEn}）`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="zh_CN" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -96,7 +106,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
           </p>
         </div>
         <dl class="colophon-meta">
-          <div><dt>档案</dt><dd>epochcraftmc.github.io</dd></div>
+          <div><dt>档案</dt><dd>{studio.siteUrl.replace(/^https?:\/\//, '')}</dd></div>
           <div>
             <dt>代码</dt>
             <dd><a href="https://github.com/EpochcraftMC" target="_blank" rel="noopener">github.com/EpochcraftMC</a></dd>

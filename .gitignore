@@ -22,6 +22,10 @@ pnpm-debug.log*
 
 # dev server log
 dev.log
+debug.log
+
+# local agent settings
+.claude/settings.local.json
 
 # jetbrains setting folder
 .idea/

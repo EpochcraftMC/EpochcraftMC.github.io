@@ -14,7 +14,7 @@ export const studio = {
   /** 作品形态 */
   craft: '地图 · 皮肤 · 组件包 · 材质光影 · 联机大厅',
   githubUrl: 'https://github.com/EpochcraftMC',
-  siteUrl: 'https://epochcraftmc.github.io',
+  siteUrl: 'https://www.epochcraft.cn',
 } as const;
 
 /** 一句话品牌定位，用于首页与页头描述。 */

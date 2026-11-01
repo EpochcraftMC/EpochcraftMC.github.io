@@ -5,7 +5,21 @@ const coreLinks = [
   { code: 'GH', name: 'GitHub', desc: 'EpochcraftMC 组织', url: 'https://github.com/EpochcraftMC' },
 ];
 
-const qqCategories = [
+interface QqGroup {
+  name: string;
+  /** 群号 */
+  value: string;
+  note: string;
+  /** 加入链接；留空时页面提示在 QQ 内搜索群号 */
+  href?: string;
+}
+
+interface QqCategory {
+  title: string;
+  groups: QqGroup[];
+}
+
+const qqCategories: QqCategory[] = [
   {
     title: '工作室',
     groups: [{ name: 'EpochCraft 社区群', value: '818860062', note: '主入口' }],
