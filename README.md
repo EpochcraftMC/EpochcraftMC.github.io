@@ -1,6 +1,7 @@
 # 方块纪元工作室 · EpochCraft Studio
 
 在线站点：<https://www.epochcraft.cn>
+仓库地址：<https://github.com/EpochcraftMC/EpochcraftMC.github.io>
 
 > **来源**：本仓库是 [CubeX 研究院](https://github.com/CubeX-MC)（CubeX-MC）站点仓库 `CubeX-MC.github.io` 的分支。从上游分支出来后，内容、设计系统与域名均由本分支独立维护，上游仅作为历史起点。
 
